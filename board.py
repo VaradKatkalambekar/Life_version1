@@ -9,7 +9,7 @@ from cell import Cell
 from random import randint
 
 class Board:
-    def __init__(self, rows, columns ):
+    def __init__(self, rows, columns):
         self._rows = rows
         self._columns = columns
         self._grid = [[Cell for col_cells in range(self._columns)] for row_cells in range(self._rows)]
@@ -23,10 +23,12 @@ class Board:
                 print (column.get_print_character(),end='')
             print () # to create a new line pr. row.
 
+        self._generate_board()    
+
     def _generate_board(self):
         for row in self._grid:
             for column in row:
-                #we set a small chance to make sure our world is not really cluttered.
+                #there is a 20% chance the cells spawn alive.
                 chance_number = randint(0,5)
                 if chance_number == 1:
                     column.set_alive()
