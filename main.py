@@ -15,3 +15,6 @@ def main():
         if user_action == '':
             world.update_board()
             world.draw_board()
+
+
+main()
