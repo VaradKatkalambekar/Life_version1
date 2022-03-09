@@ -1,4 +1,5 @@
 from tablecheck import Tablecheck
+from cell import Cell
 
 mat = Tablecheck()
 mat.print_board()
@@ -31,3 +32,46 @@ def check_conditions(self,triggered_row,triggered_column):
             if neigh_exists:
                 neighbours.append(self._grid[neigh_row][neigh_column])
     return neighbours
+
+
+
+def update_board(self):
+    print('Board is being updates')
+
+    borns =[]
+    dies = []
+    lives = []
+
+    for row in range(len(self._grid)):
+        for column in range(len(self._grid[row])):
+
+           check_conditions =  self.check_conditions(row,column)
+
+           neigh_alive = []
+
+           for i in check_conditions:
+               if i.is_alive():
+                   neigh_alive.append(i)
+            
+            cell_obj = self._grid[row][column]
+            status_main_cell = cell_obj.is_alive()
+
+
+            #if the cell is alive, we now see the number of neighbours...
+            if status_main_cell:
+                if len(neigh_alive) < 2 or len(neigh_alive) > 3:
+                    dies.append(cell_obj)
+                
+                if len(neigh_alive) == 2 or len(neigh_alive) == 3:
+                    lives.append(cell_obj)
+
+            else:
+                if len(neigh_alive) == 3:
+                    lives.append(cell_obj)
+
+    for cell_items in lives:
+        cell_items.set_alive()
+
+    for cell_items in dies:
+        cell_items.set_dead()
+
