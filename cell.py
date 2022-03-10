@@ -6,7 +6,6 @@
 
 # defining a class for the cell
 
-from operator import truediv
 
 
 class Cell:

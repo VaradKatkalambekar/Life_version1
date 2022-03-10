@@ -20,16 +20,15 @@ class Board:
         print('This is a board')
         for row in self._grid:
             for column in row:
-                print (column.get_print_character(),end='')
+                print (column.what_to_print(),end='')
             print () # to create a new line pr. row.
-
-        self._generate_board()    
+   
 
     def _generate_board(self):
         for row in self._grid:
             for column in row:
-                #there is a 20% chance the cells spawn alive.
-                chance_number = randint(0,5)
+                #there is a 33% chance the cells spawn alive.
+                chance_number = randint(0,2)
                 if chance_number == 1:
                     column.set_alive()
 

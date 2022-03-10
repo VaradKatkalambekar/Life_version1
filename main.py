@@ -17,4 +17,4 @@ def main():
             world.draw_board()
 
 
-main()
+main() 
